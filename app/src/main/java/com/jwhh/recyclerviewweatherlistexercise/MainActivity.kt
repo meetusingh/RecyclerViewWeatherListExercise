@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
-import java.time.DayOfWeek
 import java.util.*
 
 
@@ -15,30 +14,41 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        weather_list.adapter = WeatherAdapter(generateData(days))
+        weather_list.adapter = WeatherAdapter(generateData(days, temp))
         weather_list.layoutManager = LinearLayoutManager(this)
 
     }
 
-    fun generateData(days: Array<String>): List<WeatherAdapter.IRow> {
+    fun generateData(days: Array<String>, temp: Array<String>): List<WeatherAdapter.IRow> {
         val data = mutableListOf<WeatherAdapter.IRow>()
-        var calendar = Calendar.getInstance()
-        var day = calendar.get(Calendar.DAY_OF_WEEK)
 
         for (i in 0..13) {
             if(days[i].equals("Saturday"))
             {
                 data.add(WeatherAdapter.AdvertItem("Advertisement"))
-                data.add(WeatherAdapter.WeatherItem(R.drawable.temp_less_11, days[i], "31"))
             }
-            else
-                data.add(WeatherAdapter.WeatherItem(R.drawable.temp_less_11, days[i], "31"))
+            data.add(WeatherAdapter.WeatherItem(getImage(temp[i]), days[i], temp[i]))
         }
 
         return data
     }
 
     val days = arrayOf("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
+
+    val temp = arrayOf("31","12","23","11","09","39","42","23","12","19","20","25","34","31")
+
+    fun getImage(temp: String): Int {
+
+        val drawableResource = when(temp.toInt()){
+            in 1..10 ->  R.drawable.temp_less_11
+            in 11..20 -> R.drawable.temp_less_21
+            in 21..30 -> R.drawable.temp_less_than_31
+            in 31..40 -> R.drawable.temp_less_than_41
+            else -> R.drawable.temp_less_11
+        }
+
+        return drawableResource
+    }
 
 }
 
