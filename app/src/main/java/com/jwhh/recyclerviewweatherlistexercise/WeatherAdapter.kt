@@ -42,6 +42,8 @@ class WeatherAdapter(private val rows: List<IRow>) : RecyclerView.Adapter<Recycl
     override fun getItemCount()= rows.count()
 
 
+    // Implement using the interface
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
         when (holder.itemViewType) {
             WEATHER_ROW -> onBindWeatherRow(holder, rows[position] as WeatherItem)

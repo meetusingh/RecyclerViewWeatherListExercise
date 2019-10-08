@@ -4,12 +4,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
-
-    private val itemList: List<WeatherAdapter.WeatherItem>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     fun generateData(days: Array<String>, temp: Array<String>): List<WeatherAdapter.IRow> {
         val data = mutableListOf<WeatherAdapter.IRow>()
 
-        for (i in 0..13) {
+        for (i in 0..20) {
             if(days[i].equals("Saturday"))
             {
                 data.add(WeatherAdapter.AdvertItem("Advertisement"))
@@ -33,10 +30,13 @@ class MainActivity : AppCompatActivity() {
         return data
     }
 
-    val days = arrayOf("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
+    // Start from today
+    val days = arrayOf("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
 
-    val temp = arrayOf("31","12","23","11","09","39","42","23","12","19","20","25","34","31")
+    // generate randon temperature
+    val temp = arrayOf("31","12","23","11","09","39","42","23","12","19","20","25","34","31","23","12","19","20","25","34","31")
 
+    // internal utility functions should be private
     fun getImage(temp: String): Int {
 
         val drawableResource = when(temp.toInt()){

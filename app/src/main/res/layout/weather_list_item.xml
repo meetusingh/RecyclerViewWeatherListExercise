@@ -8,33 +8,36 @@
 
     <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             tools:srcCompat="@tools:sample/avatars"
             app:layout_constraintRight_toLeftOf="@+id/day"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/weather_icon"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             app:layout_constraintLeft_toRightOf="@+id/weather_icon"
-            app:layout_constraintBottom_toTopOf="@+id/temperature"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/temperature"
+            android:gravity="center"
             android:id="@+id/day"
-            android:layout_marginTop="72dp"/>
+            tools:text="Date"/>
     <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintLeft_toRightOf="@+id/weather_icon"
             app:layout_constraintTop_toBottomOf="@+id/day"
-            android:layout_marginTop="72dp"
-            android:id="@+id/temperature"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/temperature"
+            tools:text="Temperature"/>
     <Button
             android:text="View"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/view_button"
             app:layout_constraintLeft_toRightOf="@+id/temperature"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="40dp"
-            android:layout_marginLeft="196dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+           />
 
 </android.support.constraint.ConstraintLayout>
